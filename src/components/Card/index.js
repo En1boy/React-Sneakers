@@ -3,16 +3,21 @@ import CardStyles from './Card.module.scss';
 
 function Card({title, imageUrl, price, onFavorite, onPlus}) {
   const [isAdded, setIsAdded] = React.useState(false);
+  const [isFavorite, setIsFavorite] = React.useState(false);
 
   const onClickPlus = () => {
     onPlus({title, imageUrl, price});
     setIsAdded(!isAdded);
   }
 
+  const onClickFavorite = () => {
+    setIsFavorite(!isFavorite);
+  }
     return (
         <div className={CardStyles.card}>
-          <div className={CardStyles.favorite} onClick = {onFavorite}> 
-            <img src="/img/heart-unliked.svg" alt="Unliked"/></div>
+          <div className={CardStyles.favorite} onClick = {onClickFavorite}> 
+            <img src={isFavorite ? "/img/heart-liked.svg" : "/img/heart-unliked.svg"} alt="Unliked"/>
+          </div>
           <img width={133} height={112} src={imageUrl} alt="Sneakers"/>
           <h5>{title}</h5>
           <div className="d-flex justify-between align-center">

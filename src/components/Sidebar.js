@@ -10,6 +10,7 @@ function Sidebar({ onClose, onRemove, items = [] }) {
 	const [orderId, setOrderId] = React.useState(null);
 	const [isOrderComplete, setIsOrderComplete] = React.useState(false);
 	const [isLoading, setIsLoading] = React.useState(false);
+	const totalPrice = cartItems.reduce((sum, obj) => obj.price + sum, 0);
 
 	const onClickOrder = async () => {
 		try {
@@ -26,7 +27,7 @@ function Sidebar({ onClose, onRemove, items = [] }) {
 			for (let i = 0; i < cartItems.length; i++) {
 				const item = cartItems[i];
 				await axios.delete(
-					'https://634934c9a59874146b19fe11.mockapi.io/cart/' + item.id,
+					'https://63ea096b811db3d7ef052b32.mockapi.io/cart/' + item.id,
 				);
 				await delay(1000);
 			}
@@ -81,7 +82,7 @@ function Sidebar({ onClose, onRemove, items = [] }) {
 								<li>
 									<span>Итого:</span>
 									<div></div>
-									<b>21 498 руб.</b>
+									<b>{totalPrice} руб.</b>
 								</li>
 								<li>
 									<span>Налог 5%:</span>

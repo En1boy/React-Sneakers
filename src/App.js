@@ -99,13 +99,12 @@ function App() {
 				setCartItems,
 			}}>
 			<div className='wrapper clear'>
-				{cartOpened && (
-					<Sidebar
-						items={cartItems}
-						onClose={() => setCartOpened(false)}
-						onRemove={onRemoveItem}
-					/>
-				)}
+				<Sidebar
+					items={cartItems}
+					onClose={() => setCartOpened(false)}
+					onRemove={onRemoveItem}
+					opened={cartOpened}
+				/>
 				<Header onClickCart={() => setCartOpened(true)} />
 
 				<Route path='/' exact>

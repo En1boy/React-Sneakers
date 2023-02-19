@@ -1,11 +1,12 @@
 import React from 'react';
-import Info from './Info';
+import Info from '../Info';
 import axios from 'axios';
-import { useCart } from '../hooks/useCart';
+import styles from './Sidebar.module.scss';
+import { useCart } from '../../hooks/useCart';
 
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-function Sidebar({ onClose, onRemove, items = [] }) {
+function Sidebar({ onClose, onRemove, items = [], opened }) {
 	const { cartItems, setCartItems, totalPrice } = useCart();
 	const [orderId, setOrderId] = React.useState(null);
 	const [isOrderComplete, setIsOrderComplete] = React.useState(false);
@@ -38,8 +39,9 @@ function Sidebar({ onClose, onRemove, items = [] }) {
 	};
 
 	return (
-		<div className='overlay'>
-			<div className='sidebar'>
+		<div
+			className={`${styles.overlay} ${opened ? styles.overlayVisible : ''}`}>
+			<div className={styles.sidebar}>
 				<h2 className='d-flex justify-between mb-30'>
 					Корзина{' '}
 					<img

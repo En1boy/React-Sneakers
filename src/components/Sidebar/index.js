@@ -54,7 +54,7 @@ function Sidebar({ onClose, onRemove, items = [], opened }) {
 
 				{items.length > 0 ? (
 					<div className='d-flex flex-column flex'>
-						<div className='items'>
+						<div className='items flex'>
 							{items.map((obj) => (
 								<div
 									key={obj.id}
